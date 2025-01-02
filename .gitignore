@@ -1,6 +1,5 @@
 # Ignore backend sensitive files
 backend/private.env
-backend/__pycache__/
 backend/*.pyc
 backend/*.log
 
@@ -10,6 +9,7 @@ frontend/build/
 
 # General ignores
 .DS_Store
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
