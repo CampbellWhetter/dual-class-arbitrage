@@ -18,9 +18,6 @@ RUN apt-get update && apt-get install -y gcc libpq-dev \
 # Copy the application code
 COPY backend/ .
 
-# Copy the environment file
-COPY backend/private.env .
-
 # Expose the application port
 EXPOSE 8000
 
