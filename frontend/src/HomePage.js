@@ -28,7 +28,7 @@ const HomePage = () => {
       return;
     }
 
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/trading-strategy`, {
+    fetch(`/api/trading-strategy`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

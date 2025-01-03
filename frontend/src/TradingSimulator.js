@@ -7,13 +7,18 @@ const TradingSimulator = () => {
   useEffect(() => {
     const fetchLiveResults = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/live-results`);
+        const response = await fetch(`/api/live-results`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         const data = await response.json();
         setLiveResults(data);
       } catch (error) {
         console.error("Error fetching live results:", error);
       }
-    };
+    };    
 
     fetchLiveResults();
     const interval = setInterval(fetchLiveResults, 60000); // Refresh every minute
