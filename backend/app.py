@@ -12,13 +12,15 @@ import os
 
 app = FastAPI()
 
-# Load environment variables from private.env
-load_dotenv()
+# Conditionally load environment variables for local development
+if os.getenv("AWS_EXECUTION_ENV") is None:  # AWS_EXECUTION_ENV is present in AWS environments
+    from dotenv import load_dotenv
+    load_dotenv()
 
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://campbellwhetter.github.io/dual-class-arbitrage.github.io/"],
+    allow_origins=["http://localhost:8000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
