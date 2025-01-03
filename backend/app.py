@@ -20,7 +20,8 @@ if os.getenv("AWS_EXECUTION_ENV") is None:  # AWS_EXECUTION_ENV is present in AW
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8000"],
+    allow_origins=["http://localhost:8000",
+                   "https://dual-class-arbitrage.vercel.app/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
