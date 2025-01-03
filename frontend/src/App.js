@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
-import HomePage from "./HomePage"; // Your existing main page
-import TradingSimulator from "./TradingSimulator"; // New simulator page
+import Analyze from "./Analyze";
+import LiveResults from "./LiveResults";
 
 const App = () => {
   return (
@@ -12,19 +12,19 @@ const App = () => {
             to="/"
             className={({ isActive }) => (isActive ? "active-link" : "inactive-link")}
           >
-            Home
+            Analyze Securities
           </NavLink>
           <NavLink
-            to="/simulator"
+            to="/live-results"
             className={({ isActive }) => (isActive ? "active-link" : "inactive-link")}
           >
-            Trading Simulator
+            Live Results
           </NavLink>
         </nav>
         <main>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/simulator" element={<TradingSimulator />} />
+            <Route path="/" element={<Analyze />} />
+            <Route path="/live-results" element={<LiveResults />} />
           </Routes>
         </main>
       </div>
@@ -33,4 +33,3 @@ const App = () => {
 };
 
 export default App;
-

@@ -14,7 +14,7 @@ const dualClassStocks = {
   "Moog": ["MOG-A", "MOG-B"]
 };
 
-const HomePage = () => {
+const Analyze = () => {
   const [stockData, setStockData] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [investmentAmount, setInvestmentAmount] = useState(1000);
@@ -85,12 +85,28 @@ const HomePage = () => {
       <Popup trigger={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
         <h2>Enter Investment Amount:</h2>
         <input
-          onMouseEnter={(e) => (e.target.style.textDecoration = "none", e.target.style.borderColor = "black")}
+          onMouseEnter={(e) => {
+            e.target.style.textDecoration = "none";
+            e.target.style.borderColor = "black";
+          }}
+          onBlur={(e) => {
+            // Reset to default if left empty
+            if (e.target.value.trim() === "") {
+              handleInvestmentChange(1000);
+            }
+          }}
+          onKeyDown={(e) => {
+            // Prevent leading zeros
+            if (e.target.value.startsWith("0") && e.key !== "Backspace" && e.key !== ".") {
+              e.target.value = e.target.value.replace(/^0+/, "");
+            }
+          }}
           className="amount"
           type="number"
           value={investmentAmount}
           onChange={(e) => handleInvestmentChange(Number(e.target.value))}
         />
+
         {popupStrategy && (
           <div style={{ marginTop: "20px" }}>
             <h3>Trading Strategy</h3>
@@ -122,4 +138,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Analyze;

@@ -36,6 +36,11 @@
     border-color: black;
 }
 
+.amount:focus {
+  outline: none; /* Removes the default focus outline */
+  border-color: black; /* Ensures the border remains black */
+}
+
   .close-btn {
     position: absolute; /* Places it at the corner */
     top: 10px;

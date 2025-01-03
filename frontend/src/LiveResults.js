@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./TradingSimulator.css"
+import "./LiveResults.css"
 
-const TradingSimulator = () => {
+const LiveResults = () => {
   const [liveResults, setLiveResults] = useState(null);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const TradingSimulator = () => {
   const runtimeStats = liveResults.runtimeStatistics || {};
   return (
     <div class="text">
-      <h2>Live Results</h2>
+      <h2>Dual-Class Arbitrage Strategy</h2>
       <p><strong>Status:</strong> {liveResults.status}</p>
       <p><strong>Equity:</strong> {runtimeStats.Equity}</p>
       <p><strong>Return:</strong> {runtimeStats.Return}</p>
@@ -40,4 +40,4 @@ const TradingSimulator = () => {
   );
 };
 
-export default TradingSimulator;
+export default LiveResults;
