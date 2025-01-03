@@ -13,7 +13,7 @@ import os
 app = FastAPI()
 
 # Load environment variables from private.env
-load_dotenv("private.env")
+load_dotenv()
 
 # Add CORS middleware
 app.add_middleware(

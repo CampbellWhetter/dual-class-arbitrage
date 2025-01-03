@@ -23,3 +23,7 @@ EXPOSE 8000
 
 # Command to run the application
 CMD ["gunicorn", "app:app", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
+
+# Health checks
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s \
+    CMD curl -f http://localhost:8000/ || exit 1
