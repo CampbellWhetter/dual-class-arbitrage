@@ -1,6 +1,7 @@
 fastapi
 uvicorn[standard]
-pydantic
 python-dotenv
-yfinance
+pydantic
 requests
+yfinance
+gunicorn
