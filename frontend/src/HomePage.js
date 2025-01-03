@@ -28,7 +28,7 @@ const HomePage = () => {
       return;
     }
 
-    fetch("http://localhost:8000/api/trading-strategy", {
+    fetch("http://dual-c-publi-oulplybbu57e-835307635.ca-central-1.elb.amazonaws.com/api/trading-strategy", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

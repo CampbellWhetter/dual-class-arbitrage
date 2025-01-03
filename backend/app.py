@@ -18,7 +18,7 @@ load_dotenv()
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["https://campbellwhetter.github.io/dual-class-arbitrage.github.io/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

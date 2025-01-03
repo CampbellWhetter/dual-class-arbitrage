@@ -7,7 +7,7 @@ const TradingSimulator = () => {
   useEffect(() => {
     const fetchLiveResults = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/live-results");
+        const response = await fetch("http://dual-c-publi-oulplybbu57e-835307635.ca-central-1.elb.amazonaws.com/api/live-results");
         const data = await response.json();
         setLiveResults(data);
       } catch (error) {

@@ -5,7 +5,7 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Copy the requirements file
-COPY backend/requirements.txt .
+COPY requirements.txt .
 
 # Install dependencies
 RUN apt-get update && apt-get install -y gcc libpq-dev \
@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y gcc libpq-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy the application code
-COPY backend/ .
+COPY . .
 
 # Expose the application port
 EXPOSE 8000
