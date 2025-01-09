@@ -2,6 +2,7 @@
 backend/private.env
 backend/*.pyc
 backend/*.log
+backend/copilot/
 
 # Ignore frontend build files
 frontend/node_modules/
