@@ -1,0 +1,7 @@
+# Ignore backend sensitive files
+backend/private.env
+backend/*.pyc
+backend/*.log
+
+# General ignores
+.DS_Store
