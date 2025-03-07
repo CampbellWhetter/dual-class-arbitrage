@@ -8,7 +8,9 @@ import time
 import base64
 import hashlib
 from dotenv import load_dotenv
+import boto3
 import os
+from mangum import Mangum
 
 app = FastAPI()
 
@@ -133,8 +135,9 @@ async def trading_strategy(request: TradingRequest):
 # Generate headers for QuantConnect API authentication
 def generate_api_headers():
     # Fetch environment variables
-    api_token = os.getenv("API_TOKEN")
-    user_id = os.getenv("USER_ID")
+    ssm = boto3.client("ssm")
+    api_token = ssm.get_parameter(Name="API_TOKEN", WithDecryption=True)["Parameter"]["Value"]
+    user_id = ssm.get_parameter(Name="USER_ID", WithDecryption=True)["Parameter"]["Value"]
 
     # Generate a timestamp for the request
     timestamp = str(int(time.time()))
@@ -192,3 +195,6 @@ def get_live_results():
 def root():
     """Root endpoint."""
     return {"message": "API is running!"}
+
+# AWS Lambda handler
+handler = Mangum(app)

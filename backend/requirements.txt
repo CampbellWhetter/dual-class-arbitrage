@@ -1,7 +1,8 @@
 fastapi
+mangum
 uvicorn[standard]
 python-dotenv
 pydantic
 requests
 yfinance
-gunicorn
+boto3
