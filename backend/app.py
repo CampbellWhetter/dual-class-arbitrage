@@ -85,43 +85,48 @@ async def trading_strategy(request: TradingRequest):
     # Calculate hedge ratio and adjust shares for equal exposure
     hedge_ratio = min(price_a, price_b) / max(price_a, price_b)
 
-    if price_b <= price_a:
-        shares_b = investment_amount / (price_b + hedge_ratio * price_a)
-        shares_a = shares_b * hedge_ratio
-    else:
-        shares_a = investment_amount / (price_a + hedge_ratio * price_b)
-        shares_b = shares_a * hedge_ratio
-
-    shares_a = int(shares_a)
-    shares_b = int(shares_b)
-
-    total_long_value = shares_a * price_a
-    total_short_value = shares_b * price_b
-
     spread = calculate_spread(price_a, price_b)
 
     if price_b <= price_a:
+       # B is undervalued, so LONG B, SHORT A
+       shares_b = investment_amount / (price_b + hedge_ratio * price_a)
+       shares_a = shares_b * hedge_ratio
+       shares_a = int(shares_a)
+       shares_b = int(shares_b)
+
+       total_long_value = shares_b * price_b
+       total_short_value = shares_a * price_a
+
+       strategy = {
+           "action": "Short",
+           "ticker_long": ticker_b,
+           "shares_long": shares_b,
+           "price_long": price_b,
+           "ticker_short": ticker_a,
+           "shares_short": shares_a,
+           "price_short": price_a,
+           "total_long_value": total_long_value,
+           "total_short_value": total_short_value,
+           "hedge_ratio": hedge_ratio
+       }
+    else:
+        # A is undervalued, so LONG A, SHORT B
+        shares_a = investment_amount / (price_a + hedge_ratio * price_b)
+        shares_b = shares_a * hedge_ratio
+        shares_a = int(shares_a)
+        shares_b = int(shares_b)
+
+        total_long_value = shares_a * price_a
+        total_short_value = shares_b * price_b
+
         strategy = {
             "action": "Short",
-            "ticker_short": ticker_b,
-            "shares_short": shares_b,
-            "price_short": price_b,
             "ticker_long": ticker_a,
             "shares_long": shares_a,
             "price_long": price_a,
-            "total_long_value": total_long_value,
-            "total_short_value": total_short_value,
-            "hedge_ratio": hedge_ratio
-        }
-    else:
-        strategy = {
-            "action": "Short",
-            "ticker_short": ticker_a,
-            "shares_short": shares_a,
-            "price_short": price_a,
-            "ticker_long": ticker_b,
-            "shares_long": shares_b,
-            "price_long": price_b,
+            "ticker_short": ticker_b,
+            "shares_short": shares_b,
+            "price_short": price_b,
             "total_long_value": total_long_value,
             "total_short_value": total_short_value,
             "hedge_ratio": hedge_ratio
