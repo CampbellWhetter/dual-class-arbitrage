@@ -2,7 +2,7 @@
     "rewrites": [
       {
         "source": "/api/:path*",
-        "destination": "https://gdryyy9030.execute-api.ca-central-1.amazonaws.com/Prod/api/:path*"
+        "destination": "https://eg4k638zi7.execute-api.ca-central-1.amazonaws.com/Prod/api/:path*"
       }
     ]
   }  
